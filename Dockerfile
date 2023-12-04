@@ -23,18 +23,11 @@ RUN set -euo pipefail && \
     :
 
 # Install Zeppelin binary
-ARG ZEPPELIN_VERSION="0.10.1"
+ARG ZEPPELIN_VERSION="0.11.0-SNAPSHOT"
 RUN set -euo pipefail && \
-    wget https://dlcdn.apache.org/zeppelin/zeppelin-${ZEPPELIN_VERSION}/zeppelin-${ZEPPELIN_VERSION}-bin-netinst.tgz; \
-    tar xvf zeppelin-${ZEPPELIN_VERSION}-bin-netinst.tgz --strip-components=1; \
-    rm zeppelin-${ZEPPELIN_VERSION}-bin-netinst.tgz; \
-    :
-
-# Download reload4j jar
-ARG RELOAD4J_VERSION="1.2.25"
-RUN set -euo pipefail && \
-    wget "https://repo1.maven.org/maven2/ch/qos/reload4j/reload4j/${RELOAD4J_VERSION}/reload4j-${RELOAD4J_VERSION}.jar" -O /zeppelin/lib/reload4j-${RELOAD4J_VERSION}.jar; \
-    rm /zeppelin/lib/log4j-1.2.17.jar; \
+    wget https://github.com/guangie88/zeppelin/releases/download/reload4j-variant-release/zeppelin-0.11.0-SNAPSHOT.tar.gz; \
+    tar xvf zeppelin-${ZEPPELIN_VERSION}.tar.gz --strip-components=1; \
+    rm zeppelin-${ZEPPELIN_VERSION}.tar.gz; \
     :
 
 # Install GitHub Release Assets FUSE mount CLI (requires fuse install)
